@@ -1,0 +1,38 @@
+version: '3'
+services:
+  sssasasaasassssssss:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db_sssasasaasassssssss
+  db_sssasasaasassssssss:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=codifyer_database
+      - MYSQL_DATABASE=db_sssasasaasassssssss
+    volumes:
+      - mysql-db-sssasasaasassssssss:/var/lib/mysql
+    ports:
+      - "3306:3306"
+  phpmyadmin_sssasasaasassssssss:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin_sssasasaasassssssss
+    links:
+      - db_sssasasaasassssssss
+    environment:
+      PMA_HOST: db_sssasasaasassssssss
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - 80:80
+
+volumes:
+  mysql-db-sssasasaasassssssss:
