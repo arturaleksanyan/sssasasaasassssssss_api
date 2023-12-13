@@ -21,16 +21,3 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('file')->group(function () {
-    Route::post('/', [FileController::class, 'upload']);
-    Route::delete('/', [FileController::class, 'delete']);
-});
-
-Route::prefix('admin/posts')->group(function () {
-    Route::get('getter', [PostController::class, 'getter']);
-    Route::get('/', [PostController::class, 'get']);
-    Route::post('/', [PostController::class, 'add']);
-    Route::put('/{id}', [PostController::class, 'update']);
-    Route::delete('/many', [PostController::class, 'removeMany']);
-    Route::delete('/{id}', [PostController::class, 'remove']);
-});
